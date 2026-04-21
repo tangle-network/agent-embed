@@ -1,0 +1,49 @@
+{
+  "name": "@tangle-network/agent-embed",
+  "version": "0.1.0",
+  "description": "Drop-in <tangle-agent> web component for embedding any Tangle-marketplace agent into any website.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/embed.js",
+  "jsdelivr": "./dist/embed.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./embed.js": "./dist/embed.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm --out-dir dist && tsup src/standalone.ts --format iife --global-name TangleAgent --minify --out-dir dist && mv dist/standalone.js dist/embed.js 2>/dev/null || mv dist/standalone.global.js dist/embed.js 2>/dev/null || true",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "tangle",
+    "agent",
+    "embed",
+    "web-component",
+    "ai"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "happy-dom": "^20.9.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
